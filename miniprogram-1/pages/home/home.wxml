@@ -1,0 +1,30 @@
+<camera style="height:{{wh}}px; width:100%;" flash="off" device-position="{{position}}" wx:if="{{isShowPic === false}}">
+  <cover-view class='btn-box'>
+    <!-- 切换摄像头 -->
+    <cover-image src='/images/icon/reverse.png' bindtap='reverseCamera'></cover-image>
+    <!-- 拍照 -->
+    <cover-image src='/images/icon/camera.png' bindtap='takePhoto'></cover-image>
+    <!-- 从相册选取照片 -->
+    <cover-image src='/images/icon/photo.png' bindtap='choosePhoto'></cover-image>
+  </cover-view>
+
+</camera>
+
+<view wx:else>
+  <image src='{{src}}' style='width: 100%; height: {{wh}}px; display: block;' mode='aspectFill'></image>
+  <view class='faceInfo_box' wx:if="{{isShowBox}}">
+    <view class='face_row'>
+      <text>年龄：{{faceInfo.age}}岁</text>
+      <text>颜值：{{faceInfo.beauty}}</text>
+    </view>
+    <view class='face_row'>
+      <text>表情：{{map.expression[faceInfo.expression.type]}}</text>
+      <text>情绪：{{map.emotion[faceInfo.emotion.type]}}</text>
+    </view>
+    <view class='face_row'>
+      <text>脸型：{{map.face_shape[faceInfo.face_shape.type]}}</text>
+      <text>口罩：{{map.mask[faceInfo.mask.type]}}</text>
+    </view>
+  </view>
+  <button type='warn' class='reChoose' bindtap='reChoose'>重选照片</button>
+</view>
